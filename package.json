@@ -1,0 +1,30 @@
+{
+  "name": "dsh-chat",
+  "description": "DSH Web GUI 的普通对话插件：独立侧边栏「对话」入口，不绑工作区、不带工具，直接复用 DSH 现有 ctx.llm 模型路由（支持切换已导入的任意 provider/model，流式输出），多会话历史持久化到 ~/.dsh/dsh-chat.json。热插拔 —— 通过 profile 的 cordis.patch.yml + node_modules symlink 挂载，不改 DSH 源码。",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [],
+      "platform": "web"
+    }
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml"
+  ]
+}

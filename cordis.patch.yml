@@ -1,0 +1,14 @@
+# dsh-chat bundle patch: inserts the dual-face plugin row into the web
+# profile roster. Applied as a profile bundle layer (the `dsh.bundle.patch`
+# manifest field) over dsh-base when this package is listed in a profile's
+# `dsh.profile.bundles`; the equivalent direct row can also be inserted via a
+# profile's own `cordis.patch.yml`.
+#
+# The row is a bare plugin by package name: the node half (exports ".") runs
+# in the host process (/api/dsh-chat routes + ctx.llm streaming + history
+# store), and the `dsh.client` declaration in package.json makes the browser
+# half (exports "./client", served at /plugins/dsh-chat/client.js) load in
+# the web GUI.
+- insert:
+    - id: chat
+      name: 'dsh-chat'
